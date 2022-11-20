@@ -9,3 +9,7 @@ You've been asked to refactor the function `deterministicPartitionKey` in [`dpk.
 You will be graded on the exhaustiveness and quality of your unit tests, the depth of your refactor, and the level of insight into your thought process provided by the written explanation.
 
 ## Your Explanation Here
+
+One big issue with the original code is that some of the conditions in the `if` statements below are dependent on the input which has already been tested above, making them redundant in some cases. Specifically, the type and length checks will only be useful if `event.partitionKey` is provided. I used a return-early pattern for the other cases.
+
+Secondly, the same hash function is typed out in two different places. I extracted a utility function.
